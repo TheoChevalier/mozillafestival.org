@@ -1,0 +1,63 @@
+{
+  "language": "Francais",
+  "page_banner_header": "",
+  "page_banner_subheader": "",
+  "form_section_intro": {
+    "background": {
+      "header": "",
+      "body": [
+      ]
+    },
+    "space": {
+      "header": "Festival Spaces",
+      "body": [
+      ]
+    },
+    "describe": {
+      "header": "Describe your session",
+      "body": [
+      ]
+    },
+    "travel": {
+      "header": "Travel support",
+      "body": [
+      ]
+    },
+    "material": {
+      "header": "Session materials",
+      "body": [
+      ]
+    }
+  },
+  "form_field_labels": {
+    "firstname": "",
+    "surname": "",
+    "email": "",
+    "organisation": "",
+    "twitterhandle": "",
+    "githubhandle": "",
+    "otherfacilitators": "",
+    "space": "",
+    "secondaryspace": "",
+    "name": "",
+    "description": "",
+    "outcome": "",
+    "afterfestival": "",
+    "timeneeded": "",
+    "numsofparticipants": "",
+    "additionallanguage": "",
+    "travelstipend": "",
+    "needs": "",
+    "": "",
+    "": "",
+    "": "",
+    "": "",
+    "": "",
+    "": "",
+    "": ""
+  },
+  "form_field_options": {
+    "stipendnotrequired": "",
+    "stipendrequired": ""
+  }
+}

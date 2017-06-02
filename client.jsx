@@ -1,12 +1,20 @@
 import React from 'react';
 import {Router, Route, Redirect, browserHistory} from 'react-router';
 import ReactDOM from 'react-dom';
+import Proposals from './pages/proposals/proposals.jsx';
 
+var ProposalEnglish = () => ( <Proposals lang="English" /> );
+var ProposalDeutsch = () => ( <Proposals lang="Deutsch" /> );
+var ProposalEspanol = () => ( <Proposals lang="Espanol" /> );
+var ProposalFrancais = () => ( <Proposals lang="Francais" /> );
 
 var routes = (
   <Router history={browserHistory} onUpdate={() => {window.scrollTo(0, 0)}}>
     <Route name="home" path="/" component={require(`./pages/home.jsx`)} />
-    <Route name="proposals" path="/proposals" component={require(`./pages/proposals/proposals.jsx`)} />
+    <Route name="proposals" path="/proposals" component={ProposalEnglish} />
+    <Route name="proposals-deutsch" path="/proposals-deutsch" component={ProposalDeutsch} />
+    <Route name="proposals-espanol" path="/proposals-espanol" component={ProposalEspanol} />
+    <Route name="proposals-francais" path="/proposals-francais" component={ProposalFrancais} />
     <Route name="location" path="/location" component={require(`./pages/location.jsx`)} />
     <Route name="about" path="/about" component={require(`./pages/about.jsx`)} />
     <Route name="contact" path="/contact" component={require(`./pages/contact.jsx`)} />

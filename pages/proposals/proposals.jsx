@@ -8,8 +8,8 @@ var Form = require('react-formbuilder').Form;
 var fields = require('./form/fields');
 var generateHelmet = require('../../lib/helmet.jsx');
 
-const PRE_SUBMIT_LABEL = `Submit`;
-const SUBMITTING_LABEL = `Submitting...`;
+const PRE_SUBMIT_LABEL = `Submit`; // user facing text
+const SUBMITTING_LABEL = `Submitting...`; // user facing text
 const SUBMISSION_STATUS_SUCCESS = `success`;
 const SUBMISSION_STATUS_FAIL = `fail`;
 
@@ -20,8 +20,13 @@ var Proposal = React.createClass({
       formValues: {},
       submitting: false,
       submissionStatus: ``,
-      showFormInvalidNotice: false
+      showFormInvalidNotice: false,
+      stringSource: require(`./language/${this.props.lang}.json`)
     };
+  },
+  componentDidMount() {
+    console.log("- - -> LANG =", this.props.lang);
+    console.log("this.state.stringSource", this.state.stringSource);
   },
   handleSubmitAnother(event) {
     event.preventDefault();
@@ -84,7 +89,7 @@ var Proposal = React.createClass({
       delete formatted.secondaryspace;
     }
 
-    formatted.travelstipend = formatted.travelstipend === fields.LABEL_STIPEND_REQUIRED ? `required` : ``;
+    formatted.travelstipend = formatted.travelstipend === this.state.stringSource.form_field_options.stipendrequired ? `required` : ``;
 
     return formatted;
   },
@@ -111,43 +116,42 @@ var Proposal = React.createClass({
     request.send(JSON.stringify(formattedProposal));
   },
   renderForm() {
+    let stringSource = this.state.stringSource;
+
     return (
       <div className="content wide">
-        {this.renderIntro()}
         <div className="form-section">
+          {this.renderIntro(stringSource.form_section_intro.background)}
           <Form ref="formPartOne" 
-            fields={fields.partOne}
+            fields={fields.createPartOneFields(stringSource)}
             inlineErrors={true}
             onUpdate={this.handleFormUpdate} />
         </div>
         <div className="form-section">
-          <h1>Festival Spaces</h1>
-          <p>At MozFest, sessions are thematically organised into spaces. Please read the brief descriptions of each space <Link to="/spaces" target="_blank">here</Link> before answering the following questions.</p>
+          {this.renderIntro(stringSource.form_section_intro.space)}
           <Form ref="formPartTwo" 
-            fields={fields.partTwo}
+            fields={fields.createPartTwoFields(stringSource)}
             inlineErrors={true}
             onUpdate={this.handleFormUpdate} />
         </div>
         <div className="form-section">
-          <h1>Describe your session</h1>
+          {this.renderIntro(stringSource.form_section_intro.describe)}
           <Form ref="formPartThree" 
-            fields={fields.partThree}
+            fields={fields.createPartThreeFields(stringSource)}
             inlineErrors={true}
             onUpdate={this.handleFormUpdate} />
         </div>
         <div className="form-section">
-          <h1>Travel support</h1>
-          <p>MozFest offers limited places for travel sponsorship covering flights and accommodation over the festival weekend. These stipends are offered to those who need support traveling to the event and would have no other means to attend through work or personal covering of costs. We offer these stipends to encourage diversity in facilitators.</p>
+          {this.renderIntro(stringSource.form_section_intro.travel)}
           <Form ref="formPartFour" 
-            fields={fields.partFour}
+            fields={fields.createPartFourFields(stringSource)}
             inlineErrors={true}
             onUpdate={this.handleFormUpdate} />
         </div>
         <div className="form-section">
-          <h1>Session materials</h1>
-          <p>Many attendees bring a personal device (smartphone, laptop or tablet) to the festival. We can provide you with a projector and office supplies (paper, pens, post-it notes). Please note we may not be capable of supporting all your needs but will work with you to provide the best solution possible.</p>
+          {this.renderIntro(stringSource.form_section_intro.material)}
           <Form ref="formPartFive" 
-            fields={fields.partFive}
+            fields={fields.createPartFiveFields(stringSource)}
             inlineErrors={true}
             onUpdate={this.handleFormUpdate} />
         </div>
@@ -166,17 +170,16 @@ var Proposal = React.createClass({
       </div>
     )
   },
-  renderIntro() {
+  renderIntro(content) {
+    let paragraphs = content.body.map((paragraph) => {
+      // using dangerouslySetInnerHTML is okay here since we are pulling strings from a static json file, not user content or anything change dynamically over time without our attention
+      return <p dangerouslySetInnerHTML={{__html: paragraph}}></p>;
+    });
+
     return (
       <div>
-        <h1>Welcome to the MozFest 2017 Call for Proposals.</h1>
-        <p>MozFest sessions cover a wide range of topics, but share two important qualities: they are <em>interactive</em> and <em>inclusive</em>.</p>
-        <p>Sessions may have anywhere from 3 to 25 participants, with a vast range of abilities and ages. Everyone at the festival is welcome to attend your session.</p>
-        <p>Anyone may submit a proposal for MozFest 2017. Once you have submitted your session, it will enter an open curation process on <a href="https://github.com/MozillaFoundation/mozfest-program-2017" target="_blank">GitHub</a>.</p>
-        <p>In addition to English, this year we are accepting proposals in Spanish, French and German. Please check back in by June 15 to find localized versions of this form.</p>
-        <p>If you would like to submit a session and have difficulty using this text-based form, please <a href="mailto:festival@mozilla.org">email us</a> to discuss accessibility options.</p>
-        <p>If you have any questions, please email <a href="mailto:festival@mozilla.org">festival@mozilla.org</a>.</p>
-        <p>Submission deadline: August 1, 2017</p>
+        <h1>{content.header}</h1>
+        { paragraphs }
       </div>
     );
   },
@@ -211,9 +214,9 @@ var Proposal = React.createClass({
         <Header/>
         <Jumbotron image="/assets/images/proposals.jpg"
                   image2x="/assets/images/proposals.jpg">
-          <h1>Call for Proposals</h1>
+          <h1>{this.state.stringSource.page_banner_header}</h1>
           <div className="deadline">
-            <span>Deadline for submissions is August 1, 2017</span>
+            <span>{this.state.stringSource.page_banner_subheader}</span>
           </div>
         </Jumbotron>
         {generateHelmet(this.pageMetaDescription)}

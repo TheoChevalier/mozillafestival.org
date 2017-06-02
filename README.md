@@ -35,3 +35,9 @@ Production pushes are handled manually. Email [Mozilla Foundation DevOps](mailto
 - `GITHUB_REPO_OWNER_2017`
 - `GITHUB_REPO_NAME_2017`
 - ``
+
+
+
+## Localized proposal forms
+
+- 
