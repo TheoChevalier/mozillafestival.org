@@ -1,5 +1,6 @@
 var React = require('react');
 var Link = require('react-router').Link;
+var classnames = require('classnames');
 var Header = require('../../components/header.jsx');
 var Footer = require('../../components/footer.jsx');
 var Jumbotron = require('../../components/jumbotron.jsx');
@@ -8,8 +9,6 @@ var Form = require('react-formbuilder').Form;
 var fields = require('./form/fields');
 var generateHelmet = require('../../lib/helmet.jsx');
 
-const PRE_SUBMIT_LABEL = `Submit`; // user facing text
-const SUBMITTING_LABEL = `Submitting...`; // user facing text
 const SUBMISSION_STATUS_SUCCESS = `success`;
 const SUBMISSION_STATUS_FAIL = `fail`;
 
@@ -20,13 +19,11 @@ var Proposal = React.createClass({
       formValues: {},
       submitting: false,
       submissionStatus: ``,
-      showFormInvalidNotice: false,
-      stringSource: require(`./language/${this.props.lang}.json`)
+      showFormInvalidNotice: false
     };
   },
   componentDidMount() {
     console.log("- - -> LANG =", this.props.lang);
-    console.log("this.state.stringSource", this.state.stringSource);
   },
   handleSubmitAnother(event) {
     event.preventDefault();
@@ -89,7 +86,7 @@ var Proposal = React.createClass({
       delete formatted.secondaryspace;
     }
 
-    formatted.travelstipend = formatted.travelstipend === this.state.stringSource.form_field_options.stipendrequired ? `required` : ``;
+    formatted.travelstipend = formatted.travelstipend === this.props.localized.form_field_options.stipendrequired ? `required` : ``;
 
     return formatted;
   },
@@ -116,7 +113,7 @@ var Proposal = React.createClass({
     request.send(JSON.stringify(formattedProposal));
   },
   renderForm() {
-    let stringSource = this.state.stringSource;
+    let stringSource = this.props.localized;
 
     return (
       <div className="content wide">
@@ -162,7 +159,7 @@ var Proposal = React.createClass({
             type="submit"
             onClick={this.handleFormSubmit}
             disabled={this.state.submitting ? `disabled` : null}
-          >{ this.state.submitting ? SUBMITTING_LABEL : PRE_SUBMIT_LABEL }</button>
+          >{ this.state.submitting ? `Submiting...` : stringSource.form_field_controls.submit }</button>
           { this.state.showFormInvalidNotice && <div className="d-inline-block form-invalid-error">Something isn't right. Please fix the errors indicated above.</div> }
         </div>
 
@@ -171,9 +168,9 @@ var Proposal = React.createClass({
     )
   },
   renderIntro(content) {
-    let paragraphs = content.body.map((paragraph) => {
+    let paragraphs = content.body.map((paragraph, i) => {
       // using dangerouslySetInnerHTML is okay here since we are pulling strings from a static json file, not user content or anything change dynamically over time without our attention
-      return <p dangerouslySetInnerHTML={{__html: paragraph}}></p>;
+      return <p dangerouslySetInnerHTML={{__html: paragraph}} key={i}></p>;
     });
 
     return (
@@ -209,14 +206,18 @@ var Proposal = React.createClass({
     return this.renderForm();
   },
   render: function() {
+    let stringSource = this.props.localized;
+    console.log(`\nLocalized`, stringSource);
+    console.log(`\n`);
+
     return (
-      <div className="proposals-page">
+      <div className={classnames(`proposals-page`, this.props.lang.toLowerCase())}>
         <Header/>
         <Jumbotron image="/assets/images/proposals.jpg"
                   image2x="/assets/images/proposals.jpg">
-          <h1>{this.state.stringSource.page_banner_header}</h1>
+          <h1>{stringSource.page_banner_header}</h1>
           <div className="deadline">
-            <span>{this.state.stringSource.page_banner_subheader}</span>
+            <span>{stringSource.page_banner_subheader}</span>
           </div>
         </Jumbotron>
         {generateHelmet(this.pageMetaDescription)}

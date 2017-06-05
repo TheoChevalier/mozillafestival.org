@@ -8,6 +8,9 @@ import validator from './validator';
 // **********************************************
 
 var createPartOneFields = function(stringSource) {
+  const EMPTY_VALUE_ERROR = stringSource.form_validation_errors.empty_value;
+  const EMAIL_INVALID_ERROR = stringSource.form_validation_errors.email_invalid;
+
   return {
     'firstname': {
       type: `text`,
@@ -15,7 +18,7 @@ var createPartOneFields = function(stringSource) {
       labelClassname: `required`,
       fieldClassname: `form-control`,
       validator: [
-        validator.emptyValueValidator()
+        validator.emptyValueValidator(EMPTY_VALUE_ERROR)
       ]
     },
     'surname': {
@@ -24,7 +27,7 @@ var createPartOneFields = function(stringSource) {
       labelClassname: `required`,
       fieldClassname: `form-control`,
       validator: [
-        validator.emptyValueValidator()
+        validator.emptyValueValidator(EMPTY_VALUE_ERROR)
       ]
     },
     'email': {
@@ -34,8 +37,8 @@ var createPartOneFields = function(stringSource) {
       labelClassname: `required`,
       fieldClassname: `form-control`,
       validator: [
-        validator.emptyValueValidator(),
-        validator.emailValidator()
+        validator.emptyValueValidator(EMPTY_VALUE_ERROR),
+        validator.emailValidator(EMAIL_INVALID_ERROR)
       ]
     },
     'organisation': {
@@ -62,7 +65,7 @@ var createPartOneFields = function(stringSource) {
       placeholder: `Firstname Surname`,
       fieldClassname: `form-control`,
       multiplicity: 1,
-      addLabel: `+ Add another`
+      addLabel: stringSource.form_field_controls.add_another
     }
   };
 };
@@ -126,6 +129,8 @@ var createPartOneFields = function(stringSource) {
 // };
 
 var createPartTwoFields = function(stringSource) {
+  const EMPTY_VALUE_ERROR = stringSource.form_validation_errors.empty_value;
+
   return {
     'space': {
       type: `choiceGroup`,
@@ -141,7 +146,7 @@ var createPartTwoFields = function(stringSource) {
       labelClassname: `required`,
       fieldClassname: `form-control choice-group`,
       validator: [
-        validator.emptyValueValidator()
+        validator.emptyValueValidator(EMPTY_VALUE_ERROR)
       ]
     },
     'secondaryspace': {
@@ -199,6 +204,9 @@ var createPartTwoFields = function(stringSource) {
 // };
 
 var createPartThreeFields = function(stringSource) {
+  const EMPTY_VALUE_ERROR = stringSource.form_validation_errors.empty_value;
+  const MAX_WORD_REACHED_ERROR = stringSource.form_validation_errors.max_word_reached;
+
   return {
     'name': {
       type: `text`,
@@ -206,7 +214,7 @@ var createPartThreeFields = function(stringSource) {
       labelClassname: `required`,
       fieldClassname: `form-control`,
       validator: [
-        validator.emptyValueValidator()
+        validator.emptyValueValidator(EMPTY_VALUE_ERROR)
       ]
     },
     'description': {
@@ -215,8 +223,8 @@ var createPartThreeFields = function(stringSource) {
       labelClassname: `required word-length-restriction max-120-words`,
       fieldClassname: `form-control`,
       validator: [
-        validator.emptyValueValidator(),
-        validator.maxWordsValidator(120)
+        validator.emptyValueValidator(EMPTY_VALUE_ERROR),
+        validator.maxWordsValidator(120, MAX_WORD_REACHED_ERROR)
       ]
     },
     'outcome': {
@@ -225,8 +233,8 @@ var createPartThreeFields = function(stringSource) {
       labelClassname: `required word-length-restriction max-120-words`,
       fieldClassname: `form-control`,
       validator: [
-        validator.emptyValueValidator(),
-        validator.maxWordsValidator(120)
+        validator.emptyValueValidator(EMPTY_VALUE_ERROR),
+        validator.maxWordsValidator(120, MAX_WORD_REACHED_ERROR)
       ]
     },
     'afterfestival': {
@@ -235,8 +243,8 @@ var createPartThreeFields = function(stringSource) {
       labelClassname: `required word-length-restriction max-120-words`,
       fieldClassname: `form-control`,
       validator: [
-        validator.emptyValueValidator(),
-        validator.maxWordsValidator(120)
+        validator.emptyValueValidator(EMPTY_VALUE_ERROR),
+        validator.maxWordsValidator(120, MAX_WORD_REACHED_ERROR)
       ]
     },
     'timeneeded': {
@@ -251,7 +259,7 @@ var createPartThreeFields = function(stringSource) {
       labelClassname: `required`,
       fieldClassname: `form-control choice-group`,
       validator: [
-        validator.emptyValueValidator()
+        validator.emptyValueValidator(EMPTY_VALUE_ERROR)
       ]
     },
     'numsofparticipants': {
@@ -260,8 +268,8 @@ var createPartThreeFields = function(stringSource) {
       labelClassname: `required word-length-restriction max-120-words`,
       fieldClassname: `form-control`,
       validator: [
-        validator.emptyValueValidator(),
-        validator.maxWordsValidator(120)
+        validator.emptyValueValidator(EMPTY_VALUE_ERROR),
+        validator.maxWordsValidator(120, MAX_WORD_REACHED_ERROR)
       ]
     },
     'additionallanguage': {
@@ -377,6 +385,8 @@ var createPartThreeFields = function(stringSource) {
 // };
 
 var createPartFourFields = function(stringSource) {
+  const EMPTY_VALUE_ERROR = stringSource.form_validation_errors.empty_value;
+
   return {
     'travelstipend': {
       type: `choiceGroup`,
@@ -413,6 +423,8 @@ var createPartFourFields = function(stringSource) {
 // };
 
 var createPartFiveFields = function(stringSource) {
+  const MAX_WORD_REACHED_ERROR = stringSource.form_validation_errors.max_word_reached;
+
   return {
     'needs': {
       type: `textarea`,
@@ -420,7 +432,7 @@ var createPartFiveFields = function(stringSource) {
       labelClassname: `word-length-restriction max-120-words`,
       fieldClassname: `form-control`,
       validator: [
-        validator.maxWordsValidator(120)
+        validator.maxWordsValidator(120, MAX_WORD_REACHED_ERROR)
       ]
     }
   };

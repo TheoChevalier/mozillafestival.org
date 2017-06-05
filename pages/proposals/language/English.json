@@ -62,5 +62,15 @@
   "form_field_options": {
     "stipendnotrequired": "I do not require a travel stipend as I, or my work, can cover my costs",
     "stipendrequired": "I can only attend MozFest if I receive a travel stipend covering my travel and accommodation"
+  },
+  "form_field_controls": {
+    "add_another": "+ Add another",
+    "submit": "Submit",
+    "submitting": ""
+  },
+   "form_validation_errors": {
+    "empty_value": "This field cannot be left blank.",
+    "max_word_reached": "You have typed more words than allowed.",
+    "email_invalid": "Not an valid email."
   }
 }

@@ -59,5 +59,15 @@
   "form_field_options": {
     "stipendnotrequired": "",
     "stipendrequired": ""
+  },
+  "form_field_controls": {
+    "add_another": "+ Add another",
+    "submit": "Submit",
+    "submitting": ""
+  },
+  "form_validation_errors": {
+    "empty_value": "This field cannot be left blank.",
+    "max_word_reached": "",
+    "email_invalid": ""
   }
 }

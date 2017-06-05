@@ -56,17 +56,20 @@
     "numsofparticipants": "Wie werden Sie mit unterschiedlichen Teilnehmerzahlen in Ihrer Veranstaltung umgehen? Was ist, wenn 30 Personen teilnehmen? Was ist, wenn es 3 sind?",
     "additionallanguage": "Möchten Sie die Veranstaltung in einer der folgenden Sprachen zweisprachig abhalten?",
     "travelstipend": "Benötigen Sie ein Reisestipendium?",
-    "needs": "Wenn Ihre Veranstaltung zusätzliche Materialien oder elektronische Ausrüstung benötigt, beschreiben Sie bitte Ihre Bedürfnisse.",
-    "": "",
-    "": "",
-    "": "",
-    "": "",
-    "": "",
-    "": "",
-    "": ""
+    "needs": "Wenn Ihre Veranstaltung zusätzliche Materialien oder elektronische Ausrüstung benötigt, beschreiben Sie bitte Ihre Bedürfnisse."
   },
   "form_field_options": {
     "stipendnotrequired": "Ich benötige kein Reisestipendium, da ich selbst oder mein Arbeitgeber meine Kosten übernehmen kann",
     "stipendrequired": "Ich kann nur dann am MozFest teilnehmen, wenn ich ein Reisestipendium erhalte, das meine Kosten für Reise und Unterkunft abdeckt"
+  },
+  "form_field_controls": {
+    "add_another": "+ Weitere hinzufügen",
+    "submit": "Absenden",
+    "submitting": ""
+  },
+  "form_validation_errors": {
+    "empty_value": "Dieses Feld darf nicht leer sein.",
+    "max_word_reached": "Sie haben mehr Wörter als erlaubt eingegeben.",
+    "email_invalid": "Keine gültige E-Mail-Adresse."
   }
 }

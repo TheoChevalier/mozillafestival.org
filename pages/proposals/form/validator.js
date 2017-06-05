@@ -1,17 +1,17 @@
 import validator from 'validator';
 
 const Validator = {
-  emptyValueValidator() {
+  emptyValueValidator(errorMessage = `This field cannot be left blank.`) {
     return {
-      error: `This field cannot be left blank.`,
+      error: errorMessage,
       validate: function(value) {
         return !value;
       }
     };
   },
-  maxWordsValidator(maxWordsLength) {
+  maxWordsValidator(maxWordsLength = 120, errorMessage = `You have typed more words than allowed.`) {
     return {
-      error: `Maximum ${maxWordsLength} words.`,
+      error: errorMessage,
       validate: function(value) {
         if (!value) return false;
 
@@ -22,9 +22,9 @@ const Validator = {
       }
     };
   },
-  emailValidator() {
+  emailValidator(errorMessage = `"Not an valid email.`) {
     return {
-      error: `Not an valid email.`,
+      error: errorMessage,
       validate: function(value) {
         return !value || !validator.isEmail(value);
       }

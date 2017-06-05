@@ -2,11 +2,15 @@ import React from 'react';
 import {Router, Route, Redirect, browserHistory} from 'react-router';
 import ReactDOM from 'react-dom';
 import Proposals from './pages/proposals/proposals.jsx';
+import English from './pages/proposals/language/English.json';
+import Deutsch from './pages/proposals/language/Deutsch.json';
+import Espanol from './pages/proposals/language/Espanol.json';
+import Francais from './pages/proposals/language/Francais.json';
 
-var ProposalEnglish = () => ( <Proposals lang="English" /> );
-var ProposalDeutsch = () => ( <Proposals lang="Deutsch" /> );
-var ProposalEspanol = () => ( <Proposals lang="Espanol" /> );
-var ProposalFrancais = () => ( <Proposals lang="Francais" /> );
+var ProposalEnglish = () => ( <Proposals lang="English" localized={English} /> );
+var ProposalDeutsch = () => ( <Proposals lang="Deutsch" localized={Deutsch} /> );
+var ProposalEspanol = () => ( <Proposals lang="Espanol" localized={Espanol} /> );
+var ProposalFrancais = () => ( <Proposals lang="Francais" localized={Francais} /> );
 
 var routes = (
   <Router history={browserHistory} onUpdate={() => {window.scrollTo(0, 0)}}>
