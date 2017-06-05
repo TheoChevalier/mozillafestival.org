@@ -175,4 +175,27 @@
       }
     }
   }
+
+  &.francais {
+    form {
+      label {
+
+        &.required {
+          &::after {
+            content: "(requis)";
+          }
+        }
+        &.word-length-restriction.max-120-words {
+          &::after {
+            content: "(120 mots maximum)";
+          }
+        }
+        &.word-length-restriction.max-120-words.required {
+          &::after {
+            content: "(120 mots maximum) (requis)";
+          }
+        }
+      }
+    }
+  }
 }

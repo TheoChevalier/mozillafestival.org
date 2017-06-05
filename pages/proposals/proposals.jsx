@@ -217,7 +217,7 @@ var Proposal = React.createClass({
                   image2x="/assets/images/proposals.jpg">
           <h1>{stringSource.page_banner_header}</h1>
           <div className="deadline">
-            <span>{stringSource.page_banner_subheader}</span>
+            <span dangerouslySetInnerHTML={{__html: stringSource.page_banner_subheader}}></span>
           </div>
         </Jumbotron>
         {generateHelmet(this.pageMetaDescription)}
