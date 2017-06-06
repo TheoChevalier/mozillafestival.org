@@ -66,7 +66,7 @@ var Proposal = React.createClass({
 
   },
   formatProposal(proposal) {
-    const FIELD_OPTIONS = this.props.localized.form_field_options;
+    const FIELD_OPTIONS = this.props.localizedStrings.form_field_options;
     const SPACES = FIELD_OPTIONS.spaces;
     const TIME = FIELD_OPTIONS.timeneeded;
     const LANGUAGES = FIELD_OPTIONS.languages;
@@ -117,7 +117,6 @@ var Proposal = React.createClass({
       }
     }
 
-
     // let's simplify the value for "travelstipend" from a long string
     // to just "required" or blank
     formatted.travelstipend = formatted.travelstipend === FIELD_OPTIONS.stipendrequired ? `required` : ``;
@@ -147,7 +146,7 @@ var Proposal = React.createClass({
     request.send(JSON.stringify(formattedProposal));
   },
   renderForm() {
-    let stringSource = this.props.localized;
+    let stringSource = this.props.localizedStrings;
     let formFields = fields.createFields(stringSource);
 
     return (
@@ -241,7 +240,7 @@ var Proposal = React.createClass({
     return this.renderForm();
   },
   render: function() {
-    let stringSource = this.props.localized;
+    let stringSource = this.props.localizedStrings;
 
     return (
       <div className={classnames(`proposals-page`, this.props.lang.toLowerCase())}>

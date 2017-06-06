@@ -7,10 +7,10 @@ import Deutsch from './pages/proposals/language/Deutsch.json';
 import Espanol from './pages/proposals/language/Espanol.json';
 import Francais from './pages/proposals/language/Francais.json';
 
-var ProposalEnglish = () => ( <Proposals lang="English" localized={English} /> );
-var ProposalDeutsch = () => ( <Proposals lang="Deutsch" localized={Deutsch} /> );
-var ProposalEspanol = () => ( <Proposals lang="Espanol" localized={Espanol} /> );
-var ProposalFrancais = () => ( <Proposals lang="Francais" localized={Francais} /> );
+var ProposalEnglish = () => ( <Proposals lang="English" localizedStrings={English} /> );
+var ProposalDeutsch = () => ( <Proposals lang="Deutsch" localizedStrings={Deutsch} /> );
+var ProposalEspanol = () => ( <Proposals lang="Espanol" localizedStrings={Espanol} /> );
+var ProposalFrancais = () => ( <Proposals lang="Francais" localizedStrings={Francais} /> );
 
 var routes = (
   <Router history={browserHistory} onUpdate={() => {window.scrollTo(0, 0)}}>
