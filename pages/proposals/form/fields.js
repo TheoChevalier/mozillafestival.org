@@ -62,7 +62,7 @@ var createPartOneFields = function(stringSource) {
     'otherfacilitators': {
       type: `text`,
       label: stringSource.form_field_labels.otherfacilitators,
-      placeholder: `Firstname Surname`,
+      placeholder: `${stringSource.form_field_labels.firstname} ${stringSource.form_field_labels.surname}`,
       fieldClassname: `form-control`,
       multiplicity: 1,
       addLabel: stringSource.form_field_controls.add_another
@@ -243,9 +243,13 @@ var createPartFiveFields = function(stringSource) {
 };
 
 module.exports = {
-  createPartOneFields: createPartOneFields,
-  createPartTwoFields: createPartTwoFields,
-  createPartThreeFields: createPartThreeFields,
-  createPartFourFields: createPartFourFields,
-  createPartFiveFields: createPartFiveFields
+  createFields: function(stringSource) {
+    return {
+      partOne: createPartOneFields(stringSource),
+      partTwo: createPartTwoFields(stringSource),
+      partThree: createPartThreeFields(stringSource),
+      partFour: createPartFourFields(stringSource),
+      partFive: createPartFiveFields(stringSource)
+    };
+  }
 };

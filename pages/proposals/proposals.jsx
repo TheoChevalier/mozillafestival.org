@@ -148,41 +148,42 @@ var Proposal = React.createClass({
   },
   renderForm() {
     let stringSource = this.props.localized;
+    let formFields = fields.createFields(stringSource);
 
     return (
       <div className="content wide">
         <div className="form-section">
           {this.renderIntro(stringSource.form_section_intro.background)}
           <Form ref="formPartOne" 
-            fields={fields.createPartOneFields(stringSource)}
+            fields={formFields.partOne}
             inlineErrors={true}
             onUpdate={this.handleFormUpdate} />
         </div>
         <div className="form-section">
           {this.renderIntro(stringSource.form_section_intro.space)}
           <Form ref="formPartTwo" 
-            fields={fields.createPartTwoFields(stringSource)}
+            fields={formFields.partTwo}
             inlineErrors={true}
             onUpdate={this.handleFormUpdate} />
         </div>
         <div className="form-section">
           {this.renderIntro(stringSource.form_section_intro.describe)}
           <Form ref="formPartThree" 
-            fields={fields.createPartThreeFields(stringSource)}
+            fields={formFields.partThree}
             inlineErrors={true}
             onUpdate={this.handleFormUpdate} />
         </div>
         <div className="form-section">
           {this.renderIntro(stringSource.form_section_intro.travel)}
           <Form ref="formPartFour" 
-            fields={fields.createPartFourFields(stringSource)}
+            fields={formFields.partFour}
             inlineErrors={true}
             onUpdate={this.handleFormUpdate} />
         </div>
         <div className="form-section">
           {this.renderIntro(stringSource.form_section_intro.material)}
           <Form ref="formPartFive" 
-            fields={fields.createPartFiveFields(stringSource)}
+            fields={formFields.partFive}
             inlineErrors={true}
             onUpdate={this.handleFormUpdate} />
         </div>
