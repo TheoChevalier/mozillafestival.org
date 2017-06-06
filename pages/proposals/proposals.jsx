@@ -8,6 +8,7 @@ var Router = require('react-router');
 var Form = require('react-formbuilder').Form;
 var fields = require('./form/fields');
 var generateHelmet = require('../../lib/helmet.jsx');
+var EnglishStrings = require('./language/English.json');
 
 const SUBMISSION_STATUS_SUCCESS = `success`;
 const SUBMISSION_STATUS_FAIL = `fail`;
@@ -21,9 +22,6 @@ var Proposal = React.createClass({
       submissionStatus: ``,
       showFormInvalidNotice: false
     };
-  },
-  componentDidMount() {
-    console.log("- - -> LANG =", this.props.lang);
   },
   handleSubmitAnother(event) {
     event.preventDefault();
@@ -68,25 +66,61 @@ var Proposal = React.createClass({
 
   },
   formatProposal(proposal) {
+    const FIELD_OPTIONS = this.props.localized.form_field_options;
+    const SPACES = FIELD_OPTIONS.spaces;
+    const TIME = FIELD_OPTIONS.timeneeded;
+    const LANGUAGES = FIELD_OPTIONS.languages;
+
     let formatted = Object.assign({}, proposal);
-    let additionalLang = formatted.additionallanguage;
-    let otherAdditionalLang = formatted.additionallanguageother;
 
-    if (additionalLang === `Other`) {
-      delete formatted.additionallanguage;
-      delete formatted.additionallanguageother;
-
-      // we record "additionallanguage" only if user has specified the language
-      if (otherAdditionalLang) {
-        formatted.additionallanguage = `Other: ${otherAdditionalLang}`;
+    // Although Space labels are localized, when we submit the entry to
+    // Google Spreadsheet and GitHub we want them to be in English.
+    // This is to make the curation process simpler.
+    for (let key in SPACES) {
+      if (SPACES[key] === formatted.space) {
+        formatted.space = EnglishStrings.form_field_options.spaces[key];
+      }
+      if (SPACES[key] === formatted.secondaryspace) {
+        formatted.secondaryspace = EnglishStrings.form_field_options.spaces[key];
       }
     }
-
-    if (formatted.secondaryspace === `None`) {
+    if (formatted.secondaryspace === EnglishStrings.form_field_options.spaces.none) {
       delete formatted.secondaryspace;
     }
 
-    formatted.travelstipend = formatted.travelstipend === this.props.localized.form_field_options.stipendrequired ? `required` : ``;
+    // Similarly, although Language labels are localized, when we submit the entry to
+    // Google Spreadsheet and GitHub we want them to be in English.
+    // This is to make the curation process simpler.
+    let additionalLang = formatted.additionallanguage;
+    let otherAdditionalLang = formatted.additionallanguageother;
+
+    delete formatted.additionallanguage;
+    delete formatted.additionallanguageother;
+
+    if (additionalLang === LANGUAGES.other) {
+      // we record "additionallanguage" only if user has specified the language
+      if (otherAdditionalLang) {
+        formatted.additionallanguage = `${EnglishStrings.form_field_options.languages.other}: ${otherAdditionalLang}`;
+      }
+    } else {
+      for (let key in LANGUAGES) {
+        if (LANGUAGES[key] === formatted.space) {
+          formatted.additionallanguage = EnglishStrings.form_field_options.languages[key];
+        }
+      }
+    }
+
+    // Do the same for "timeneeded"
+    for (let key in TIME) {
+      if (TIME[key] === formatted.timeneeded) {
+        formatted.timeneeded = EnglishStrings.form_field_options.timeneeded[key];
+      }
+    }
+
+
+    // let's simplify the value for "travelstipend" from a long string
+    // to just "required" or blank
+    formatted.travelstipend = formatted.travelstipend === FIELD_OPTIONS.stipendrequired ? `required` : ``;
 
     return formatted;
   },
@@ -207,8 +241,6 @@ var Proposal = React.createClass({
   },
   render: function() {
     let stringSource = this.props.localized;
-    console.log(`\nLocalized`, stringSource);
-    console.log(`\n`);
 
     return (
       <div className={classnames(`proposals-page`, this.props.lang.toLowerCase())}>

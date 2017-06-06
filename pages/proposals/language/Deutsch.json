@@ -59,6 +59,27 @@
     "needs": "Wenn Ihre Veranstaltung zusätzliche Materialien oder elektronische Ausrüstung benötigt, beschreiben Sie bitte Ihre Bedürfnisse."
   },
   "form_field_options": {
+    "spaces": {
+      "decentralization": "Dezentralisierung",
+      "digital_inclusion": "Digitale Inklusion",
+      "open_innovation": "Offene Innovation",
+      "privacy_and_security": "Datenschutz und Sicherheit",
+      "web_literacy": "Web-Kenntnisse",
+      "youth_zone": "Jugend-Bereich",
+      "none": "Keiner"
+    },
+    "timeneeded": {
+      "less_than_60_mins": "weniger als 60 Minuten",
+      "60_mins": "60 Minuten",
+      "90_mins": "90 Minuten",
+      "all_weekend": "Das ganze Wochenende, als Installation, Ausstellung oder Veranstaltung zur spontanen Teilnahme"
+    },
+    "languages": {
+      "spanish": "Spanisch",
+      "german": "Deutsch",
+      "french": "Französisch",
+      "other": "Autre"
+    },
     "stipendnotrequired": "Ich benötige kein Reisestipendium, da ich selbst oder mein Arbeitgeber meine Kosten übernehmen kann",
     "stipendrequired": "Ich kann nur dann am MozFest teilnehmen, wenn ich ein Reisestipendium erhalte, das meine Kosten für Reise und Unterkunft abdeckt"
   },

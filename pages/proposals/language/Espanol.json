@@ -47,12 +47,30 @@
     "numsofparticipants": "",
     "additionallanguage": "",
     "travelstipend": "",
-    "needs": "",
-    "": "",
-    "": "",
-    "": ""
+    "needs": ""
   },
   "form_field_options": {
+    "spaces": {
+      "decentralization": "",
+      "digital_inclusion": "",
+      "open_innovation": "",
+      "privacy_and_security": "",
+      "web_literacy": "",
+      "youth_zone": "",
+      "none": ""
+    },
+     "timeneeded": {
+      "less_than_60_mins": "",
+      "60_mins": "",
+      "90_mins": "",
+      "all_weekend": ""
+    },
+    "languages": {
+      "spanish": "",
+      "german": "",
+      "french": "",
+      "other": ""
+    },
     "stipendnotrequired": "",
     "stipendrequired": ""
   },

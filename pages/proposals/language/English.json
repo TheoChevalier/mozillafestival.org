@@ -60,6 +60,27 @@
     "needs": "If your session requires additional materials or electronic equipment, please outline your needs."
   },
   "form_field_options": {
+    "spaces": {
+      "decentralization": "Decentralization",
+      "digital_inclusion": "Digital Inclusion",
+      "open_innovation": "Open Innovation",
+      "privacy_and_security": "Privacy and Security",
+      "web_literacy": "Web Literacy",
+      "youth_zone": "Youth Zone",
+      "none": "None"
+    },
+    "timeneeded": {
+      "less_than_60_mins": "less than 60 mins",
+      "60_mins": "60 mins",
+      "90_mins": "90 mins",
+      "all_weekend": "All weekend, as an installation, exhibit or drop-in session"
+    },
+    "languages": {
+      "spanish": "Spanish",
+      "german": "German",
+      "french": "French",
+      "other": "Other"
+    },
     "stipendnotrequired": "I do not require a travel stipend as I, or my work, can cover my costs",
     "stipendrequired": "I can only attend MozFest if I receive a travel stipend covering my travel and accommodation"
   },
