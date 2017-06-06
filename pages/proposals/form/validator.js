@@ -22,7 +22,7 @@ const Validator = {
       }
     };
   },
-  emailValidator(errorMessage = `"Not an valid email.`) {
+  emailValidator(errorMessage = `Not an valid email.`) {
     return {
       error: errorMessage,
       validate: function(value) {
