@@ -2,6 +2,7 @@ import React from 'react';
 import {Router, Link} from 'react-router';
 import ImageTag from './imagetag.jsx';
 import { MofoFooter } from 'mofo-ui';
+import { FormattedHTMLMessage } from 'react-intl';
 
 const FOOTER_LINKS = [
   {
@@ -22,7 +23,7 @@ const FOOTER_LINKS = [
   },
   {
     link: `https://www.mozilla.org/privacy/websites`,
-    text: `Privacy`
+    text: `this.context.intl.formatMessage({id: 'string1'})`
   },
   {
     link: `https://www.mozilla.org/privacy/websites/#cookies`,
@@ -49,12 +50,14 @@ var Linker = React.createClass({
       return (
         <Link to={this.props.to}>
           {this.props.children}
+
         </Link>
       )
     }
     return (
       <a href={this.props.href} target={this.props.target}>
         {this.props.children}
+
       </a>
     )
   }
